@@ -13,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     /* background: linear-gradient(135deg, #00c6ff, #0072ff); */
     background-color: #F5F5F5;
     background-size: cover;
