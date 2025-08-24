@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Minimal Calculator</title>
+<style>
+  :root{
+    --surface:#ffffff;
+    --bg-top:#f6f9fc;
+    --bg-bottom:#eef2f7;
+    --text:#111827;
+    --op-warm:#fff7f2;   /* + and × */
+    --op-cool:#eef8fb;   /* − and ÷ */
+    --eq:#e8f0ff;
+    --clear:#ffece5;
+    --shadow:0 10px 20px rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100svh; display:grid; place-items:center;
+    background:linear-gradient(180deg,var(--bg-top),var(--bg-bottom));
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+  }
+  .calculator{
+    width:min(360px,92vw);
+    background:var(--surface);
+    border-radius:24px;
+    padding:16px;
+    box-shadow:var(--shadow);
+  }
+  .screen{
+    height:64px; border-radius:16px; background:#f0f3f7;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,.05);
+    display:flex; align-items:center; justify-content:flex-end;
+    padding:0 12px; font-size:32px; font-weight:700; letter-spacing:.5px;
+    overflow:hidden;
+  }
+  .keys{
+    margin-top:12px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  button{
+    appearance:none; border:0; border-radius:14px; padding:18px 0;
+    font-size:20px; font-weight:700; background:#fff;
+    box-shadow:0 2px 0 rgba(0,0,0,.04), 0 6px 16px rgba(0,0,0,.06);
+    color:var(--text); touch-action:manipulation;
+  }
+  button:active{ transform:translateY(1px); }
+  /* distinct coloring */
+  [data-action="operator"][data-op="+"],
+  [data-action="operator"][data-op="×"]{ background:var(--op-warm); }
+  [data-action="operator"][data-op="-"],
+  [data-action="operator"][data-op="÷"]{ background:var(--op-cool); }
+  [data-action="equals"]{ background:var(--eq); }
+  [data-action="clear"]{ background:var(--clear); }
+</style>
+</head>
+<body>
+  <main class="calculator" role="application" aria-label="Calculator">
+    <div id="screen" class="screen" aria-live="polite" aria-atomic="true">0</div>
+
+    <div id="keys" class="keys">
+      <!-- Row 1 -->
+      <button data-action="clear" aria-label="Clear">C</button>
+      <button data-action="operator" data-op="÷" aria-label="Divide">÷</button>
+      <button data-action="operator" data-op="×" aria-label="Multiply">×</button>
+      <button data-action="operator" data-op="-" aria-label="Subtract">−</button>
+      <!-- Row 2 -->
+      <button data-action="digit" data-value="7">7</button>
+      <button data-action="digit" data-value="8">8</button>
+      <button data-action="digit" data-value="9">9</button>
+      <button data-action="operator" data-op="+" aria-label="Add">+</button>
+      <!-- Row 3 -->
+      <button data-action="digit" data-value="4">4</button>
+      <button data-action="digit" data-value="5">5</button>
+      <button data-action="digit" data-value="6">6</button>
+      <button data-action="equals" aria-label="Equals">=</button>
+      <!-- Row 4 -->
+      <button data-action="digit" data-value="1">1</button>
+      <button data-action="digit" data-value="2">2</button>
+      <button data-action="digit" data-value="3">3</button>
+      <button data-action="digit" data-value="0">0</button>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const screen = document.getElementById('screen');
+      const keys = document.getElementById('keys');
+
+      const state = {
+        display: '0',
+        first: null,
+        operator: null,
+        waiting: false,
+      };
+
+      function updateScreen(){
+        screen.textContent = state.display;
+      }
+
+      function inputDigit(d){
+        if (state.waiting){
+          state.display = d;
+          state.waiting = false;
+        } else {
+          state.display = state.display === '0' ? d : state.display + d;
+        }
+      }
+
+      function calculate(a, b, op){
+        const A = Number(a), B = Number(b);
+        if (op === '÷' && B === 0) return 'Error';
+        let result = A;
+        switch(op){
+          case '+': result = A + B; break;
+          case '-': result = A - B; break;
+          case '×': result = A * B; break;
+          case '÷': result = A / B; break;
+        }
+        // light rounding to tame floating quirks (safe even for integers)
+        return String(Math.round(result * 1e12) / 1e12);
+      }
+
+      function handleOperator(nextOp){
+        // If user changes their mind about the operator
+        if (state.operator && state.waiting){
+          state.operator = nextOp;
+          return;
+        }
+
+        if (state.first === null){
+          state.first = state.display;
+        } else if (state.operator){
+          const result = calculate(state.first, state.display, state.operator);
+          state.display = result;
+          if (result === 'Error'){
+            // reset after an error
+            state.first = null;
+            state.operator = null;
+            state.waiting = false;
+            updateScreen();
+            return;
+          }
+          state.first = result;
+        }
+
+        state.waiting = true;
+        state.operator = nextOp;
+      }
+
+      function equals(){
+        if (!state.operator || state.waiting) return; // nothing to do
+        const result = calculate(state.first, state.display, state.operator);
+        state.display = result;
+        state.first = null;
+        state.operator = null;
+        state.waiting = false;
+      }
+
+      function clearAll(){
+        state.display = '0';
+        state.first = null;
+        state.operator = null;
+        state.waiting = false;
+      }
+
+      // Clicks (event delegation)
+      keys.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+
+        const action = btn.dataset.action;
+        if (action === 'digit') {
+          inputDigit(btn.dataset.value);
+        } else if (action === 'operator') {
+          handleOperator(btn.dataset.op);
+        } else if (action === 'equals') {
+          equals();
+        } else if (action === 'clear') {
+          clearAll();
+        }
+        updateScreen();
+      });
+
+      // Optional keyboard support
+      window.addEventListener('keydown', (e) => {
+        if (/^\d$/.test(e.key)) { inputDigit(e.key); }
+        else if (['+', '-', '*', '/'].includes(e.key)) {
+          const map = { '*': '×', '/': '÷', '+': '+', '-': '-' };
+          handleOperator(map[e.key]);
+        } else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); equals(); }
+        else if (e.key === 'Escape' || e.key.toLowerCase() === 'c') { clearAll(); }
+        updateScreen();
+      });
+
+      updateScreen();
+    })();
+  </script>
+</body>
+</html>
