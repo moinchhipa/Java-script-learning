@@ -118,7 +118,6 @@ body {
 @media (max-width: 480px) {
     .screen {
         font-size: 2rem;
-        height: 80px;
     }
 
     .btn {
