@@ -7,12 +7,12 @@ let humi = document.querySelector("#humidity");
 let wind = document.querySelector("#wind-speed");
 
 btn.addEventListener("click", () => {
-  checkWeather(inp.value);
+  checkWeather(inp.value.trim());
 });
 
 inp.addEventListener("keyup", (event) => {
   if (event.key === "Enter") {
-    checkWeather(inp.value);
+    checkWeather(inp.value.trim());
   }
 });
 
@@ -36,7 +36,8 @@ async function checkWeather(city) {
     temp.innerText = Math.round(data.main.temp) + "°";
     humi.innerText = data.main.humidity + "%";
     wind.innerText = data.wind.speed + "km/h";
-    icon.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+    icon.src =
+      "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
   } catch (error) {
     console.error("Error fetching weather", error);
   }
