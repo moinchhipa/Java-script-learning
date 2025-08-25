@@ -14,7 +14,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 80vh;
-    /* background: linear-gradient(135deg, #00c6ff, #0072ff); */
     background-color: #F5F5F5;
     background-size: cover;
 }
@@ -75,6 +74,7 @@ body {
 
 .btn:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
 .row {
@@ -108,7 +108,9 @@ body {
     color: #ffffff;
 }
 
-.dZero {
-    width: 7.9rem;
-    border-radius: 17px;
+.back {
+    background-color: #272727;
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 500;
 }

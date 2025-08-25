@@ -16,6 +16,9 @@ buttons.forEach((btn) => {
     } else if (btn.classList.contains("ope")) {
       screen.innerText += value;
       screenValue = screen.innerText;
+    } else if (btn.classList.contains("back")) {
+      screenValue = screenValue.slice(0, -1);
+      screen.innerText = screenValue || "0";
     } else if (btn.classList.contains("clear")) {
       screen.innerText = "0";
       screenValue = "";
