@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    color: #2C3E50;
+}
+
+body {
+    background: linear-gradient(to bottom, #74ebd5, #ACB6E5);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    height: 2.7rem;
+    width: 15.7rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 7px;
+    margin-right: 0.9rem;
+    font-size: 1.1rem;
+    background-color: #ffffffcc;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+input:hover {
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    height: 2.7rem;
+    width: 2.7rem;
+    border-radius: 50%;
+    border: none;
+    background-color: #ffffffcc;
+    color: #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+button svg {
+    width: 1.9rem;
+    height: 1.9rem;
+}
+
+.card {
+    width: 308px;
+    height: 310px;
+    background-color: #ffffffcc;
+    border-radius: 9px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.card .city {
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin: 1rem 0 0.8rem 0;
+}
+
+.temperature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.temperature p {
+    font-size: 5rem;
+}
+
+.temperature .icon {
+    font-size: 5rem;
+    margin-left: 0.5rem;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    height: 140px;
+    width: 140px;
+    margin-left: 0.5rem;
+    background-color: transparent;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.data p {
+    font-size: 1.4rem;
+    margin: 0 0.7rem;
+    font-weight: 500;
+}
