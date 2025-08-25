@@ -35,13 +35,9 @@ body {
 
 .screen {
     background-color: #0e0d0d;
-   /* background: linear-gradient(135deg, #3a7bd5, #00d2ff); */
-   /* background: linear-gradient(135deg, #232526, #414345); */
-
     color: #eaeaea;
     height: 120px;
     width: 100%;
-    /* margin: 11px 11px 5px 11px; */
     margin-bottom: 5px;
     border-radius: 15px 15px 0 0;
     display: flex;
@@ -114,13 +110,9 @@ body {
     font-size: 2.2rem;
     font-weight: 500;
 }
-
+/* 
 @media (max-width: 480px) {
     .screen {
         font-size: 2rem;
     }
-
-    .btn {
-        font-size: 1.5rem;
-    }
-}
+} */
