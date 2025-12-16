@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="editor">
+        <h2>Resume Editor</h2>
+
+        <label>Name</label>
+        <input id="nameInput" type="text" placeholder="type your name" />
+
+        <label>Role</label>
+        <input id="roleInput" type="text" placeholder="type role,e.g., Web Developer" />
+
+        <label>Email</label>
+        <input id="emailInput" type="email" placeholder="type your Email" />
+
+        <label>Phone</label>
+        <input id="phoneInput" type="tel" placeholder="type your phone no." />
+
+        <label>Summary</label>
+        <textarea
+          id="summaryInput"
+          rows="4"
+          placeholder="type Summary"
+          maxlength="400"
+        ></textarea>
+
+        <label>Education</label>
+        <textarea
+          id="educationInput"
+          rows="4"
+          placeholder="type Education"
+          maxlength="250"
+        ></textarea>
+
+        <label>Skills</label>
+        <textarea
+          id="skillsInput"
+          rows="4"
+          maxlength="300"
+          placeholder="type Skills"
+        ></textarea>
+
+        <label>Projects</label>
+        <textarea
+          id="projectsInput"
+          rows="4"
+          placeholder="type Projects"
+          maxlength="600"
+        ></textarea>
+
+        <label>Other Information</label>
+        <textarea
+          id="otherInput"
+          rows="4"
+          placeholder="other information"
+          maxlength="200"
+        ></textarea>
+        <button id="Download_btn">Download PDF</button>
+      </div>
+
+      <div class="preview">
+        <div class="resume">
+          <div class="header">
+            <div>
+              <div class="name" id="prevName">Your Name</div>
+              <div class="role" id="prevRole">Your Role</div>
+            </div>
+
+            <div class="contact">
+              <div class="email" id="prevEmail">your@email.com</div>
+              <div class="phone" id="prevPhone">00000 00000</div>
+            </div>
+          </div>
+          <div class="section-topic">Summary</div>
+          <div class="summary-text" id="prevSummary">Write summary ...</div>
+
+          <div class="section-topic">Education</div>
+          <div class="education-text" id="prevEducation">Add your education ...</div>
+
+          <div class="section-topic">Skills</div>
+          <div class="skills-text" id="prevSkills">Write skills ...</div>
+
+          <div class="section-topic">Projects</div>
+          <div class="projects-text" id="prevProjects">Write projects ...</div>
+
+          <div class="section-topic">Other Information</div>
+          <div class="other-text" id="prevOther">Write other info ...</div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html> 
+ 

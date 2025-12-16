@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+.main{
+    display: flex;
+    height: 100vh;
+}
+.editor{
+    width: 40%;
+    padding: 20px;
+    background-color: rgb(151, 206, 230);
+    overflow-y: auto;
+}
+.preview{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    padding: 20px;
+    background-color: rgb(210, 238, 242);
+    overflow-y: auto;
+}
+.editor h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.editor label{
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.editor input,
+.editor textarea{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 1px #aaa;
+    margin-top: 5px;
+    transition: all .4s ease;
+}
+.editor input:focus,
+.editor textarea:focus{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    outline: none;
+}
+
+.resume{
+    background-color: white;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 30px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.header .name{
+    font-size: 42px;
+    font-weight: 600;
+}
+.header .role{
+    font-size: 20px;
+    transform: translateX(5px);
+}
+.contact{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.section-topic{
+    position: relative;
+    font-size: 25px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.section-topic::after{
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: 100%;
+    top: 30px;
+    background-color: rgba(0, 0, 0, 0.506);
+}
+.summary-text,
+.education-text,
+.skills-text,
+.projects-text,
+.other-text{
+  margin-bottom: 10px;
+  font-size: 18px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#Download_btn {
+    background-color: #fff;
+    height: 3rem;
+    width: 7rem;
+    padding: 3px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
