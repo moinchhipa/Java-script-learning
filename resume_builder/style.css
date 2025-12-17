@@ -5,7 +5,7 @@
 }
 .main{
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
 }
 .editor{
     width: 40%;
@@ -110,3 +110,42 @@
     border-radius: 10px;
     margin-top: 1rem;
 }
+
+.print-mode .editor,
+.print-mode .preview {
+  overflow: visible;
+}
+
+.print-mode .resume {
+  height: 287mm;
+  min-height: unset;
+}
+
+.print-mode .main {
+  display: block;
+}
+
+.print-mode .preview {
+  display: block;
+  padding: 0;
+  background: none;
+}
+
+
+html, body {
+  height: 100%;
+}
+
+
+@media (max-width: 1000px) {
+  .main {
+    flex-direction: column;
+  }
+  .editor {
+    width: 100%;
+  }
+  .preview {
+    display: none;
+  }
+}
+
