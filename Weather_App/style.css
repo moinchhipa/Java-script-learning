@@ -3,25 +3,40 @@
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    color: #2C3E50;
+    color: #fff;
 }
 
 body {
-    background: linear-gradient(to bottom, #74ebd5, #ACB6E5);
+    background: url(assets/bg_sky.jpg);
+    background-position: center;
+    background-size: 300% 300%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
 }
+
 
 .main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    justify-content: center;
     width: 100%;
 }
 
 .search {
+    opacity: 0;
     display: flex;
     align-items: center;
+    backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem;
+    border-radius: 30px;
+    box-shadow: 0 1px 10px rgba(7, 2, 71, 0.399);
+        border: 1px solid rgba(255, 255, 255, 0.366);
+
+    animation: fadeInDown 1s ease forwards;
 }
 
 input {
@@ -29,15 +44,23 @@ input {
     width: 15.7rem;
     padding: 0.5rem;
     border: none;
-    border-radius: 7px;
+    border-radius: 20px;
     margin-right: 0.9rem;
     font-size: 1.1rem;
-    background-color: #ffffffcc;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.126);
+    backdrop-filter: blur(18px);
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-input:hover {
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+input::placeholder {
+    color: #455b70;
+}
+
+input:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px #0055ff3a;
 }
 
 button {
@@ -45,71 +68,80 @@ button {
     width: 2.7rem;
     border-radius: 50%;
     border: none;
-    background-color: #ffffffcc;
-    color: #ccc;
+    background: rgba(255, 255, 255, 0.126);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.6s ease;
 }
 
 button:hover {
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+    transform: rotate(360deg) scale(1.15);
+    background: rgba(255, 255, 255, 0.308);
 }
 
 button svg {
-    width: 1.9rem;
-    height: 1.9rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #455b70;
+    transition: transform 0.3s ease;
+}
+
+button:hover svg {
+    transform: scale(1.25);
 }
 
 .card {
-    width: 308px;
-    height: 310px;
-    background-color: #ffffffcc;
-    border-radius: 9px;
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    width: 340px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.366);
+    text-align: center;
+    animation: fadeInDown 1s ease forwards;
+    animation-delay: .1s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card p {
-    font-size: 1.2rem;
-    color: #333;
-    margin: 0;
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 18px #03262840;
 }
 
 .card .city {
-    font-size: 1.9rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     margin: 1rem 0 0.8rem 0;
+    color: #6ba5e3;
+    text-shadow: 0 0 10px #6190ed85;
 }
 
 .temperature {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    margin-top: 1rem;
 }
 
 .temperature p {
-    font-size: 5rem;
+    font-size: 4.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #413a99, #00f0ff, #00b7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 2s infinite;
 }
 
 .temperature .icon {
-    font-size: 5rem;
-    margin-left: 0.5rem;
-}
-
-.data {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-left: 0.8rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px #00f0ff80);
 }
 
 .icon {
@@ -121,13 +153,66 @@ button svg {
 
 .data {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 2rem;
+    width: 100%;
+    gap: 1rem;
 }
 
-.data p {
-    font-size: 1.4rem;
-    margin: 0 0.7rem;
-    font-weight: 500;
+.data .humi, 
+.data .wind {
+    flex: 1;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.data .humi:hover,
+.data .wind:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px #03262840;
+}
+
+.data p:first-child {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 0.4rem;
+}
+
+.data p:last-child {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #6ba5e3;
+}
+
+
+
+
+@keyframes fadeInDown {
+   0%{
+    opacity: 0;
+    transform: translateX(500px);
+   }
+   50%{
+    opacity: 1;
+    transform: translateX(-150px);
+   }
+   100%{
+     opacity: 1;
+    transform: translateX(0px);
+   }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+    100% { transform: scale(1); }
 }
